@@ -1,0 +1,42 @@
+header,
+footer,
+section,
+article,
+nav {
+  display: block;
+}
+.l-align-center {
+  text-align: center;
+}
+.l-align-right {
+  text-align: right;
+}
+.l-hidden {
+  display: none;
+}
+.l-inline-list li {
+  display: inline-block;
+  float: left;
+}
+.l-float-left {
+  float: left;
+}
+.l-float-right {
+  float: right;
+}
+.l-margin-left-small {
+  margin-left: 10px;
+}
+#socket-status {
+  border: 1px solid #999;
+  height: 10px;
+  width: 120px;
+  line-height: 10px;
+  text-align: center;
+  color: #999;
+  padding: 4px 8px;
+}
+#socket-status.error {
+  border: 1px solid #b33;
+  color: #b33;
+}

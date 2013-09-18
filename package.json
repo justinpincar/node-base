@@ -1,0 +1,28 @@
+{
+  "name": "irally",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "0.2.x",
+    "connect-mongo": "*",
+    "ejs": "0.8.x",
+    "emailjs": "0.3.x",
+    "express": "3.2.x",
+    "libxmljs": "0.7.x",
+    "moment": "2.0.x",
+    "node-inspector": "0.2.0beta4",
+    "passport": "0.1.x",
+    "passport-local": "0.1.x",
+    "pg": "~0.10.2",
+    "semaphore": "1.0.x",
+    "sequelize": "1.6.x",
+    "sequelize-postgres": "1.6.x",
+    "sitemap": "0.6.x",
+    "slug": "0.2.x",
+    "socket.io": "0.9.16",
+    "sqlite3": "2.1.x",
+    "stylus": "*",
+    "winston": "0.6.x"
+  }
+}
+

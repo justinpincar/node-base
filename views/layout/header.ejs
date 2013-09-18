@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>iRally.tv</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script type='text/javascript' src='/js/console.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      App = {};
+      App.data = {};
+      App.config = {}
+
+      var socket_ok = function() {
+        $('#socket-status').html("Connected");
+        $('#socket-status').removeClass("error");
+      }
+
+      var socket_error = function() {
+        $('#socket-status').html("Disconnected");
+        $('#socket-status').addClass("error");
+      }
+
+      var connectUrl = document.location.protocol + '//' + document.location.host;
+      var connectOptions = {};
+      if (document.location.protocol == "https:") {
+        connectOptions = {secure: true};
+      }
+      App.socket = io.connect(connectUrl, connectOptions);
+      App.socket.on('connect', this.socket_ok);
+      App.socket.on('reconnect', this.socket_ok);
+      App.socket.on('disconnect', this.socket_error);
+      App.socket.on('connect_failed', this.socket_error);
+      App.socket.on('reconnect_failed', this.socket_error);
+      App.socket.on('reload', function() { document.location.reload(true); });
+      App.socket.on('sendTo', function(data) {
+        document.location.href = data.href;
+      });
+      App.socket.on('appError', function(data) {
+        alert("Application Error: " + data.message)
+        document.location.reload(true);
+      });
+
+      randomString = function(length) {
+        chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var result = '';
+        for (var i=length; i>0; --i) {
+          result += chars[Math.round(Math.random() * (chars.length - 1))];
+        }
+        return result;
+      }
+
+      window.addEventListener("beforeunload", function (e) {
+        App.socket.removeListener('disconnect', this.show_lockout);
+      });
+    </script>
+  </head>
+  <body>
+
